@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crystal Game</title>
+
+    <!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- Jumbotron for Title -->
+<div class="jumbotron">
+    <h1 class="text-center">Crystal Game</h1>
+    <h3 class="text-center">See if you can win at the Crystal Game!</h3>
+</div>
+
+<div class="container">
+
+    <div class="row">
+
+        <!-- Calculator Panel -->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Crystals</h3>
+                </div>
+
+                <div class="panel-body">
+                  <button id="button-gem1" class="btn btn-primary gem" value="gem1"><img src="blue gem.jpg" width="100"/></button>
+                  <button id="button-gem2" class="btn btn-primary gem" value="gem2"><img src="green gem.jpg" width="100"/></button>
+                  <button id="button-gem3" class="btn btn-primary gem" value="gem3"><img src="yellow gem.jpg" width="100"/></button>
+                  <button id="button-gem4" class="btn btn-primary gem" value="gem4"><img src="red gem.jpg" width="100"/></button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Result Panel -->
+        <div class="col-lg-6">
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Result</h3>
+                </div>
+                <div class="panel-body">
+                    <h1 id="result"></h1>
+                </div>
+            </div>
+        </div>
+         <div class="col-lg-6">
+         <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your Number</h3>
+                </div>
+                <div class="panel-body">
+                    <h1 id="numbguess"></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Total Score</h3>
+                </div>
+                <div class="panel-body">
+                    <h1 id="wins">Wins: </h1>
+                    <h1 id="losses">losses: </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+var gem1 = Math.floor(Math.random() * (12 - 1) + 1), 
+    gem2 = Math.floor(Math.random() * (12 - 1) + 1), 
+    gem3 = Math.floor(Math.random() * (12 - 1) + 1), 
+    gem4 = Math.floor(Math.random() * (12 - 1) + 1), 
+    numbguess = Math.floor(Math.random() * (120 - 19) + 19),
+    gem = 0,
+    wins = 0, 
+    losses = 0,
+    result = 0;
+// Your code here...
+
+
+
+
+$("#numbguess").text(numbguess);
+console.log(gem1);
+
+$(".gem").on("click", function(){
+    gem = $(this).attr("value");
+    console.log(gem);
+    switch (gem) {
+      case "gem1" :
+      {
+        result = result + gem1;
+        break;
+      }
+      case "gem2" :
+      {
+        result = result + gem2;
+        break;
+      }
+      case "gem3" :
+      {
+        result = result + gem3;
+        break;
+      }
+      case "gem4" :
+      {
+        result = result + gem4;
+        break;
+      }
+    }
+    console.log(result);
+    $("#result").text(result);
+
+    if(result === numbguess){
+        wins++;
+        $("#wins").text("Wins: " + wins);
+        result = 0;
+        gem1 = Math.floor(Math.random() * (12 - 1) + 1), 
+        gem2 = Math.floor(Math.random() * (12 - 1) + 1), 
+        gem3 = Math.floor(Math.random() * (12 - 1) + 1), 
+        gem4 = Math.floor(Math.random() * (12 - 1) + 1), 
+        numbguess = Math.floor(Math.random() * (120 - 19) + 19),
+        $("#numbguess").text(numbguess);
+        $("#result").text(result);
+        console.log(result);
+    }
+    else if (result >  numbguess){
+        losses++;
+        $("#losses").text("Losses: " + losses); 
+        result = 0;
+        gem1 = Math.floor(Math.random() * (12 - 1) + 1), 
+        gem2 = Math.floor(Math.random() * (12 - 1) + 1), 
+        gem3 = Math.floor(Math.random() * (12 - 1) + 1), 
+        gem4 = Math.floor(Math.random() * (12 - 1) + 1), 
+        numbguess = Math.floor(Math.random() * (120 - 19) + 19),
+        $("#numbguess").text(numbguess);
+        $("#result").text(result);
+        console.log(result);
+    }
+});
+});
+
+
+</script>
+
+</body>
+</html>
